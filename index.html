@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    
+    <title>Esolang Playground</title>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="https://cdn.glitch.com/15d3834f-bd70-417c-a8a9-baa57fc4934c%2Fdownload%20(2).jpeg?v=1589217382010">
+  
+  </head>
+
+  <body>
+    
+    <div id="header">
+      <h1>
+        Esolang Playground
+      </h1>
+      <h2>
+        The Unofficial IDE of Esolang, the esoteric programming languages wiki
+      </h2>
+      <button onclick="window.location.href='https://esolang-playground.glitch.me/about.html'">
+        About
+      </button>
+      <button onclick="toggleTheme()">
+        Toggle Theme
+      </button>
+      <button onclick="window.location.href='https://esolangs.org/wiki/Esolang_Playground'">
+        Esolang Page
+      </button>
+      <button onclick="window.location.href='https://glitch.com/~esolang-playground'">
+        View Source on Glitch
+      </button>
+    </div>
+    
+    <script src="l.js"></script>
+    <script src="brainflop.js"></script>
+    <script src="mini-brainflop.js"></script>
+    <script src="brainf.js"></script>
+    
+    <script src="style.js"></script>
+    
+    <select id="language">
+      <option value="">-- Select a Language --</option>
+      <option value="brainf**k">brainf**k</option>
+      <option value="brainflop">brainflop</option>
+      <option value="miniBrainflop">miniBrainflop</option>
+      <option value="L">L</option>
+    </select>
+    <button onclick="run()">
+      Run Code
+    </button>
+    <button onclick="helloworld()">
+      Hello World
+    </button>
+    
+    <br><br>
+    <p>
+      Your code:
+    </p>
+    <textarea id="code" rows="20" cols="100" spellcheck="false"></textarea>
+    <p>
+      Standard Input (stdin):
+    </p>
+    <textarea id="stdin" rows="5" cols="100" spellcheck="false"></textarea>
+    <p>
+      Standard Output (stdout):
+    </p>
+    <textarea id="stdout" rows="5" cols="100" spellcheck="false"></textarea>
+    
+    <script>
+    
+      function run() {
+        let language = document.getElementById("language").value;
+        let code = document.getElementById("code").value;
+        let stdin = document.getElementById("stdin").value;
+        let stdout = document.getElementById("stdout");
+        
+        switch (language) {
+          case "L":
+            stdout.innerHTML = l_lang(code);
+            break;
+          
+          case "brainflop":
+            stdout.innerHTML = brainflop_run(code, stdin);
+            break;
+          
+          case "miniBrainflop":
+            stdout.innerHTML = miniBrainflop_run(code, stdin);
+            break;
+            
+          case "brainf**k":
+            stdout.innerHTML = run_bf(code, stdin);
+            break;
+          
+          default:
+            stdout.innerHTML = "No language selected.";
+            break;
+        }
+      }
+      
+      function helloworld() {
+        let language = document.getElementById("language").value;
+        let code = document.getElementById("code");
+        
+        switch (language) {
+          case "L":
+            code.innerHTML = 
+`llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+llllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll\n`;
+            break;
+          
+          case "brainflop":
+            code.innerHTML = 
+`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
++++++++++++++++++++++++++++++*
++++++++**
++++*#
+++++++++++++++++++++++++++++++++*
++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+++++++++++++++++++++++++*
++++*
+------*
+--------*`;
+            break;
+          
+          case "miniBrainflop":
+            code.innerHTML = "No hello world program yet written.";
+            break;
+            
+          case "brainf**k":
+            code.innerHTML =
+`++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.`;
+            break;
+          
+          default:
+            code.innerHTML = "No language selected.";
+            break;
+        }
+      }
+    
+    </script>
+    
+  </body>
+
+</html>
